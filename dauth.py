@@ -113,7 +113,7 @@ transparency_input = dbc.FormGroup(
         dbc.Col(html.Label("Раствор прозрачен"), width=5),
         dbc.Col(
             dbc.Checkbox(
-                id="transparency_checkbox", className="form-check-input", checked="1"
+                id="transparency_checkbox", className="form-check-input", checked="0"
             ),
             width=2,
         ),
@@ -130,7 +130,7 @@ colorless_input = dbc.FormGroup(
         dbc.Col(html.Label("Раствор бесцветен"), width=5),
         dbc.Col(
             dbc.Checkbox(
-                id="colorless_checkbox", className="form-check-input", checked="1"
+                id="colorless_checkbox", className="form-check-input", checked="0"
             ),
             width=2,
         ),
@@ -142,7 +142,7 @@ ph_input = dbc.FormGroup(
         dbc.Label("Ph: ", html_for="ph-row", width=5),
         dbc.Col(
             dbc.Input(
-                id="ph_input", type="number", min=0.1, max=99.9, step=0.1, value="7.1"
+                id="ph_input", type="number", min=0.1, max=99.9, step=0.1, value="0"
             ),
             width=7,
         ),
@@ -159,7 +159,7 @@ albumen_input = dbc.FormGroup(
                 min=0.1,
                 max=99.9,
                 step=0.1,
-                value="2.5",
+                value="0",
             ),
             width=7,
         ),
@@ -178,7 +178,7 @@ bioactivity_invivo_input = dbc.FormGroup(
                 min=1,
                 max=150,
                 step=1,
-                value="100",
+                value="0",
             ),
             width=7,
         ),
@@ -197,7 +197,7 @@ bioactivity_if_input = dbc.FormGroup(
                 min=1,
                 max=150,
                 step=1,
-                value="100",
+                value="0",
             ),
             width=7,
         ),
@@ -390,7 +390,7 @@ def change_values(series_num):
         ]
     else:
         param_connection.close()
-        return [1, 1, 7.1, 2.5, 100, 100, ""]
+        return [0, 0, 0, 0, 0, 0, ""]
 
 
 app.scripts.config.serve_locally = True

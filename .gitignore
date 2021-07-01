@@ -3,3 +3,6 @@ bak_sparam.py
 dbtest.py
 graph.py
 modal_test.py
+assets/xlstest.py
+assets/output.csv
+assets/output.xlsx

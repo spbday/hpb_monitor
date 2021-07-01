@@ -13,6 +13,11 @@ import locale
 from datetime import datetime
 import pandas as pd
 import plotly.express as px
+#import os
+#import glob
+#import csv
+#from xlsxwriter.workbook import Workbook
+import xlsxwriter
 
 locale.setlocale(locale.LC_TIME, "ru_RU.UTF-8")
 
@@ -180,7 +185,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.Button("Загрузить данные", id="download_button"),
-                        dcc.Download(id="download_text"),
+                        dcc.Download(id="download_xlsx"),
                     ]
                 ),
                 style={"width": "100%"},
@@ -194,7 +199,7 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output("download_text", "data"),
+    Output("download_xlsx", "data"),
     Input("download_button", "n_clicks"),
     prevent_initial_call=True,
 )
@@ -210,11 +215,22 @@ def func(n_clicks):
             "Биоактивность (in vivo)",
             "Биоактивность (ИФ)",
         ]
-        series_df.to_csv("assets/output.csv")
-        f = open("assets/output.csv", "r")
-        s = f.read()
-        f.close()
-        return dict(content=s, filename=datetime.now().strftime("%Y-%m-%d") + ".csv")
+        date_str = datetime.now().strftime("%Y-%m-%d")
+#        series_df.to_csv("assets/output.csv")
+#        workbook = Workbook("assets/output.xlsx")
+#        worksheet = workbook.add_worksheet()
+#        f = open("assets/output.csv", "rt")
+#        reader = csv.reader(f)
+#        for r, row in enumerate(reader):
+#            for c, col in enumerate(row):
+#                worksheet.write(r, c, col)
+#        workbook.close()
+#        f = open("assets/output.xlsx", "rb")
+#        s = f.read()
+#        f.close()
+#        return dict(content=s, filename=datetime.now().strftime("%Y-%m-%d") + ".xlsx")
+        return dcc.send_data_frame(series_df.to_excel, date_str + ".xlsx", sheet_name=date_str)
+
 
 
 @app.callback(
